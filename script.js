@@ -4,7 +4,7 @@ var ctx = canvas.getContext('2d');
 
 // Tools: Pencil, eraser
 // Events: MouseDown, MouseUp, MouseMove, MouseLeave
-// Functions: Record Mouse Data, Draw the Mouse Data
+// Functions: Record Mouse Data (addClick), Draw the Mouse Data
 
 
 var container = document.getElementById('paint');
@@ -38,3 +38,14 @@ function MouseLeave(event) {
 	paint = false;
 }
 container.addEventListener("mouseleave", MouseLeave);
+
+// Add Click function which records the mouse data
+var clickX = new Array();
+var clickY = new Array();
+var clickDrag = new Array();
+
+function addClick(x, y, dragging) {
+	clickX.push(x);
+	clickY.push(y);
+	clickDrag.push(dragging);
+}
