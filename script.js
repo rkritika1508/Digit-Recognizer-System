@@ -1,12 +1,10 @@
-console.log("Done");
 var paint = false;
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-ctx.font = '40pt Calibri';
-ctx.fillStyle = 'blue';
-ctx.fillText('Hello', canvas.offsetLeft, canvas.offsetTop);
-console.log(canvas.offsetLeft);
-console.log(canvas.offsetTop);
+
+// Tools: Pencil, eraser
+// Events: MouseDown, MouseUp, MouseMove, MouseLeave
+// Functions: Record Mouse Data, Draw the Mouse Data
 
 
 var container = document.getElementById('paint');
@@ -24,8 +22,19 @@ container.addEventListener("mousedown", MouseDown);
 function MouseUp(event) {
 	paint = false;
 };
+container.addEventListener("mouseup", MouseUp);
 
-// Pencil, eraser
-// Events: MouseDown, MouseUp, MouseMove, MouseLeave
-// Record Mouse Data, Draw the Mouse Data
-// We have to track the coordinates of the cursor and if the key is pressed we need to draw on the canvas
+// Mouse Move Event
+function MouseMove(event) {
+	if(paint) {
+		addClick(event.pageX - this.offsetLeft, event.pageY - this.offsetTop, true);
+		redraw();
+	}
+};
+container.addEventListener("mousemove", MouseMove);
+
+//Mouse Leave Event
+function MouseLeave(event) {
+	paint = false;
+}
+container.addEventListener("mouseleave", MouseLeave);
